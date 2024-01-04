@@ -1,0 +1,17 @@
+{
+    "name": "extract-html-widget",
+    "version": "1.0.0",
+    "description": "Extract data from html-widgets used in R vector plots.",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "html-widget"
+    ],
+    "author": "ProxyMurder",
+    "license": "MIT",
+    "devDependencies": {
+        "jsdom": "^23.0.1"
+    }
+}
