@@ -1,6 +1,7 @@
 {
     "name": "extract-html-widget",
     "version": "1.0.0",
+    "type": "module",
     "description": "Extract data from html-widgets used in R vector plots.",
     "main": "dist/index.js",
     "scripts": {
