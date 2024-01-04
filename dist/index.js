@@ -1,5 +1,4 @@
 import { JSDOM } from 'jsdom';
-import { readFileSync } from 'fs';
 
 export const { extract_data } = {
     extract_data: function (file) {
@@ -14,7 +13,7 @@ export const { extract_data } = {
 
         const html_widgets = d.querySelectorAll('div.html-widget');
 
-        let data = [];
+        let df = [];
         html_widgets.forEach((e) => {
             let id = e.getAttribute('id');
             var script = d.querySelector(`script[data-for="${id}"]`);
@@ -23,9 +22,9 @@ export const { extract_data } = {
 
             let { x } = JSON.parse(script.textContent || script.text || '{}');
 
-            data.push(x);
+            df.push(x);
         });
 
-        return data;
+        return df;
     },
 };
