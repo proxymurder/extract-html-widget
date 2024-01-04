@@ -12,7 +12,7 @@
     ],
     "author": "ProxyMurder",
     "license": "MIT",
-    "devDependencies": {
+    "dependencies": {
         "jsdom": "^23.0.1"
     }
 }
