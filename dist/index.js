@@ -1,4 +1,5 @@
 import { JSDOM } from 'jsdom';
+import { readFileSync } from 'fs';
 
 export const { extract_data } = {
     extract_data: function (file) {
