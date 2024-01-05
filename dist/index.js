@@ -68,6 +68,8 @@ export const { extract_data } = {
                         df.table[i].normalized = target;
                     }
                 }
+            } else {
+                df.node.push(x);
             }
         });
 
