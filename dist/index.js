@@ -13,7 +13,7 @@ export const { extract_data } = {
         const html_widget = window.document.querySelectorAll('div.html-widget');
 
         let df = {
-            node: [],
+            vector: [],
             table: [],
         };
 
@@ -36,7 +36,9 @@ export const { extract_data } = {
                     normalized: [],
                     size: 0,
                 };
+
                 df.table[i].raw.push(x);
+
                 for (const j in defs) {
                     if (!defs[j].name || defs[j].name == 'Id') continue;
 
@@ -68,8 +70,37 @@ export const { extract_data } = {
                         df.table[i].normalized = target;
                     }
                 }
-            } else {
-                df.node.push(x);
+            } else if (o.hasOwnProperty('NodeID')) {
+                df.vector.push(x);
+
+                const { group, name } = x.nodes;
+                const { source, target } = x.links;
+
+                if (group.length != name.length) return null;
+
+                for (const i in group.length)
+                    df.vector[i] = {
+                        id: j,
+                        name: name[j],
+                        group: group[j],
+                        links: {
+                            source: [],
+                            target: [],
+                        },
+                    };
+
+                if (source.length != target.length) return null;
+
+                for (const i in source.length) {
+                    let t = target[i];
+                    let s = source[i];
+
+                    if (!df.vector[t].links.source.includes(s))
+                        df.vector[t].links.source.push(s);
+
+                    if (!df.vector[s].links.target.includes(t))
+                        df.vector[s].links.target.push(t);
+                }
             }
         });
 
