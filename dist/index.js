@@ -100,22 +100,22 @@ export const { extract_data } = {
                         target: [],
                     };
                 }
-                console.log(df.vector[i].data);
 
-                // for (let j = 0; j < s_l; j++) {
-                //     let t = target[j];
-                //     let s = source[j];
+                for (let j = 0; j < s_l; j++) {
+                    let t = target[j];
+                    let s = source[j];
 
-                //     if (!df.vector[t].data[j].source.includes(s)) {
-                //         df.vector[t].data[j].source.push(s);
-                //         df.vector[t].normalized.source += ';' + s;
-                //     }
+                    console.log(df.vector[i].data[j]);
+                    //     if (!df.vector[t].data[j].source.includes(s)) {
+                    //         df.vector[t].data[j].source.push(s);
+                    //         df.vector[t].normalized.source += ';' + s;
+                    //     }
 
-                //     if (!df.vector[s].data[j].target.includes(t)) {
-                //         df.vector[s].data[j].target.push(t);
-                //         df.vector[s].normalized.target += ';' + t;
-                //     }
-                // }
+                    //     if (!df.vector[s].data[j].target.includes(t)) {
+                    //         df.vector[s].data[j].target.push(t);
+                    //         df.vector[s].normalized.target += ';' + t;
+                    //     }
+                }
             }
         });
 
