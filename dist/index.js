@@ -107,12 +107,12 @@ export const { extract_data } = {
 
                     if (!df.vector[t].data[j].source.includes(s)) {
                         df.vector[t].data[j].source.push(s);
-                        df.vector[t].data[j].normalized.source += ';' + s;
+                        df.vector[t].normalized.source += ';' + s;
                     }
 
                     if (!df.vector[s].data[j].target.includes(t)) {
                         df.vector[s].data[j].target.push(t);
-                        df.vector[s].data[j].normalized.target += ';' + t;
+                        df.vector[s].normalized.target += ';' + t;
                     }
                 }
             }
