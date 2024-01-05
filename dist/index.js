@@ -105,7 +105,7 @@ export const { extract_data } = {
                     let t = target[j];
                     let s = source[j];
 
-                    console.log(df.vector[i].data[j]);
+                    console.log(df.vector[i].data);
                     //     if (!df.vector[t].data[j].source.includes(s)) {
                     //         df.vector[t].data[j].source.push(s);
                     //         df.vector[t].normalized.source += ';' + s;
