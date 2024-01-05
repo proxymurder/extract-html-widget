@@ -10,18 +10,16 @@ export const { extract_data } = {
 
         const { window } = new JSDOM(input);
 
-        const d = window.document;
-
-        const html_widgets = d.querySelectorAll('div.html-widget');
+        const html_widget = window.document.querySelectorAll('div.html-widget');
 
         let df = {
             node: [],
             table: [],
         };
 
-        for (const i in html_widgets) {
-            let id = html_widgets[i].getAttribute('id');
-            var s = d.querySelector(`script[data-for="${id}"]`);
+        html_widget.forEach((w) => {
+            let id = w.getAttribute('id');
+            var s = window.document.querySelector(`script[data-for="${id}"]`);
 
             if (!s) return null;
 
@@ -39,36 +37,36 @@ export const { extract_data } = {
                 };
 
                 for (const j in defs) {
-                    if (defs[j].name && defs[j].name != 'Id') {
-                        if (defs[j].name != ' ') {
-                            const name = `${defs[j].name}`
-                                .split('.')
-                                .join('_')
-                                .toLowerCase();
+                    if (!defs[j].name || defs[j].name == 'Id') continue;
 
-                            const target = x.data[defs[j].targets];
+                    if (defs[j].name != ' ') {
+                        const name = `${defs[j].name}`
+                            .split('.')
+                            .join('_')
+                            .toLowerCase();
 
-                            if (target.length != df.table[i].size) return null;
+                        const target = x.data[defs[j].targets];
 
-                            df.table[i].keys.push(name);
+                        if (target.length != df.table[i].size) return null;
 
-                            df.table[i][name] = {
-                                data: target,
-                            };
+                        df.table[i].keys.push(name);
 
-                            df.table[i].raw = df.table[i].raw.map((r, i) => {
-                                return r + ';' + target[i];
-                            });
-                        } else {
-                            let target = x.data[defs[j].targets];
+                        df.table[i][name] = {
+                            data: target,
+                        };
 
-                            df.table[i].size = target.length;
-                            df.table[i].raw = target;
-                        }
+                        df.table[i].raw = df.table[i].raw.map((r, i) => {
+                            return r + ';' + target[i];
+                        });
+                    } else {
+                        let target = x.data[defs[j].targets];
+
+                        df.table[i].size = target.length;
+                        df.table[i].raw = target;
                     }
                 }
             }
-        }
+        });
 
         return df;
     },
