@@ -100,7 +100,7 @@ export const { extract_data } = {
                         target: [],
                     };
                 }
-                console.log(df.vector.data);
+                console.log(df.vector[i].data);
 
                 // for (let j = 0; j < s_l; j++) {
                 //     let t = target[j];
