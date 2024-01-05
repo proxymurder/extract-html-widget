@@ -101,11 +101,11 @@ export const { extract_data } = {
                     };
                 }
 
+                console.log(df.vector[i].data[0]);
                 for (let j = 0; j < s_l; j++) {
                     let t = target[j];
                     let s = source[j];
 
-                    console.log(df.vector[i].data);
                     //     if (!df.vector[t].data[j].source.includes(s)) {
                     //         df.vector[t].data[j].source.push(s);
                     //         df.vector[t].normalized.source += ';' + s;
