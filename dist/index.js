@@ -73,12 +73,22 @@ export const { extract_data } = {
             } else if (o.hasOwnProperty('NodeID')) {
                 const { group, name } = x.nodes;
                 const { source, target } = x.links;
-                if (group.length != name.length) return null;
+
+                let s_n, s_l;
+                if ((s_n = group.length) != name.length) return null;
+                if ((s_l = source.length) != target.length) return null;
 
                 // // df.vector.push(x);
-                df.vector[i] = [];
-                for (const j in group.length) {
-                    df.vector[i][j] = {
+                df.vector[i] = {
+                    size: {
+                        links: 0,
+                        nodes: 0,
+                    },
+                    data: [],
+                };
+
+                for (let j = 0; j < s_n; j++) {
+                    df.vector[i].data[j] = {
                         normalized: {
                             source: `${j};${name[j]};${group[j]}`,
                             target: `${j};${name[j]};${group[j]}`,
@@ -86,30 +96,25 @@ export const { extract_data } = {
                         id: j,
                         name: name[j],
                         group: group[j],
-                        links: {
-                            source: [],
-                            target: [],
-                        },
+                        source: [],
+                        target: [],
                     };
-                    console.log(df.vector[i][j]);
                 }
 
-                if (source.length != target.length) return null;
+                for (let j = 0; j < s_l; j++) {
+                    let t = target[j];
+                    let s = source[j];
 
-                // for (const j in source.length) {
-                //     let t = target[j];
-                //     let s = source[j];
+                    if (!df.vector[t].data[j].source.includes(s)) {
+                        df.vector[t].data[j].source.push(s);
+                        df.vector[t].data[j].normalized.source += ';' + s;
+                    }
 
-                //     if (!df.vector[t].links.source.includes(s)) {
-                //         df.vector[t].links.source.push(s);
-                //         df.vector[t].normalized.source += ';' + s;
-                //     }
-
-                //     if (!df.vector[s].links.target.includes(t)) {
-                //         df.vector[s].links.target.push(t);
-                //         df.vector[s].normalized.target += ';' + t;
-                //     }
-                // }
+                    if (!df.vector[s].data[j].target.includes(t)) {
+                        df.vector[s].data[j].target.push(t);
+                        df.vector[s].data[j].normalized.target += ';' + t;
+                    }
+                }
             }
         });
 
