@@ -31,11 +31,12 @@ export const { extract_data } = {
                 const defs = o.columnDefs;
 
                 df.table[i] = {
-                    keys: [],
                     raw: [],
+                    keys: [],
+                    normalized: [],
                     size: 0,
                 };
-
+                df.table[i].raw.push(x);
                 for (const j in defs) {
                     if (!defs[j].name || defs[j].name == 'Id') continue;
 
@@ -55,14 +56,16 @@ export const { extract_data } = {
                             data: target,
                         };
 
-                        df.table[i].raw = df.table[i].raw.map((r, i) => {
-                            return r + ';' + target[i];
-                        });
+                        df.table[i].normalized = df.table[i].normalized.map(
+                            (r, i) => {
+                                return r + ';' + target[i];
+                            }
+                        );
                     } else {
                         let target = x.data[defs[j].targets];
 
                         df.table[i].size = target.length;
-                        df.table[i].raw = target;
+                        df.table[i].normalized = target;
                     }
                 }
             }
