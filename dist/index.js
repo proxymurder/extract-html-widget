@@ -73,42 +73,42 @@ export const { extract_data } = {
             } else if (o.hasOwnProperty('NodeID')) {
                 const { group, name } = x.nodes;
                 const { source, target } = x.links;
+                console.log(group);
+                // if (group.length != name.length) return null;
 
-                if (group.length != name.length) return null;
+                // // df.vector.push(x);
+                // df.vector[i] = [];
+                // for (const j in group.length)
+                //     df.vector[i][j] = {
+                //         normalized: {
+                //             source: `${k};${name[j]};${group[j]}`,
+                //             target: `${k};${name[j]};${group[j]}`,
+                //         },
+                //         id: j,
+                //         name: name[j],
+                //         group: group[j],
+                //         links: {
+                //             source: [],
+                //             target: [],
+                //         },
+                //     };
 
-                // df.vector.push(x);
-                df.vector[i] = [];
-                for (const j in group.length)
-                    df.vector[i][j] = {
-                        normalized: {
-                            source: `${k};${name[j]};${group[j]}`,
-                            target: `${k};${name[j]};${group[j]}`,
-                        },
-                        id: j,
-                        name: name[j],
-                        group: group[j],
-                        links: {
-                            source: [],
-                            target: [],
-                        },
-                    };
+                // if (source.length != target.length) return null;
 
-                if (source.length != target.length) return null;
+                // for (const j in source.length) {
+                //     let t = target[j];
+                //     let s = source[j];
 
-                for (const j in source.length) {
-                    let t = target[j];
-                    let s = source[j];
+                //     if (!df.vector[t].links.source.includes(s)) {
+                //         df.vector[t].links.source.push(s);
+                //         df.vector[t].normalized.source += ';' + s;
+                //     }
 
-                    if (!df.vector[t].links.source.includes(s)) {
-                        df.vector[t].links.source.push(s);
-                        df.vector[t].normalized.source += ';' + s;
-                    }
-
-                    if (!df.vector[s].links.target.includes(t)) {
-                        df.vector[s].links.target.push(t);
-                        df.vector[s].normalized.target += ';' + t;
-                    }
-                }
+                //     if (!df.vector[s].links.target.includes(t)) {
+                //         df.vector[s].links.target.push(t);
+                //         df.vector[s].normalized.target += ';' + t;
+                //     }
+                // }
             }
         });
 
