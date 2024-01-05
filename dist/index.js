@@ -17,7 +17,7 @@ export const { extract_data } = {
             table: [],
         };
 
-        html_widget.forEach((w) => {
+        html_widget.forEach((w, i) => {
             let id = w.getAttribute('id');
             var s = window.document.querySelector(`script[data-for="${id}"]`);
 
