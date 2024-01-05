@@ -31,13 +31,11 @@ export const { extract_data } = {
                 const defs = o.columnDefs;
 
                 df.table[i] = {
-                    raw: [],
                     keys: [],
                     normalized: [],
                     size: 0,
+                    raw: x,
                 };
-
-                df.table[i].raw.push(x);
 
                 for (const j in defs) {
                     if (!defs[j].name || defs[j].name == 'Id') continue;
@@ -78,13 +76,13 @@ export const { extract_data } = {
                 if ((s_n = group.length) != name.length) return null;
                 if ((s_l = source.length) != target.length) return null;
 
-                // // df.vector.push(x);
                 df.vector[i] = {
                     size: {
                         links: 0,
                         nodes: 0,
                     },
                     data: [],
+                    raw: x,
                 };
 
                 for (let j = 0; j < s_n; j++) {
