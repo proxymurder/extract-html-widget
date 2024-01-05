@@ -73,28 +73,28 @@ export const { extract_data } = {
             } else if (o.hasOwnProperty('NodeID')) {
                 const { group, name } = x.nodes;
                 const { source, target } = x.links;
-                console.log(group.length != name.length);
-                // if (group.length != name.length) return null;
+                if (group.length != name.length) return null;
 
                 // // df.vector.push(x);
-                // df.vector[i] = [];
-                // for (const j in group.length)
-                //     df.vector[i][j] = {
-                //         normalized: {
-                //             source: `${k};${name[j]};${group[j]}`,
-                //             target: `${k};${name[j]};${group[j]}`,
-                //         },
-                //         id: j,
-                //         name: name[j],
-                //         group: group[j],
-                //         links: {
-                //             source: [],
-                //             target: [],
-                //         },
-                //     };
+                df.vector[i] = [];
+                for (const j in group.length) {
+                    df.vector[i][j] = {
+                        normalized: {
+                            source: `${j};${name[j]};${group[j]}`,
+                            target: `${j};${name[j]};${group[j]}`,
+                        },
+                        id: j,
+                        name: name[j],
+                        group: group[j],
+                        links: {
+                            source: [],
+                            target: [],
+                        },
+                    };
+                    console.log(df.vector[i][j]);
+                }
 
-                console.log(source.length != target.length);
-                // if (source.length != target.length) return null;
+                if (source.length != target.length) return null;
 
                 // for (const j in source.length) {
                 //     let t = target[j];
