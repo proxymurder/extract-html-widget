@@ -13,8 +13,8 @@ export const { extract_data } = {
         const html_widget = window.document.querySelectorAll('div.html-widget');
 
         let df = {
-            vector: [],
             table: [],
+            vector: [],
         };
 
         html_widget.forEach((w, i) => {
